@@ -1,0 +1,25 @@
+DB : 데이터베이스
+- 자료를 영구적으로 저장하는 공간
+- 정형/비정형 데이터베이스로 나뉜다.
+
+관계형 데이터베이스 (RDB)
+- 정형 데이터베이스
+- 무결성에 위배되지 않도록 만든다.
+- 도구 : Oracle Maria MySQL msSQL 등
+- 테이블의 형태 : 행(row)과 열(column)로 구성된다.
+> 행은 튜플(Tuple), 열은 속성(Attribute)
+
+- 행(row)
+CRUD : 생성(Create) 조회(Read) 갱신(Update) 삭제(Delete)
+C = row INSERT
+R = row SELECT
+U = row UPDATE
+D = row DELETE
+: 쿼리문
+C : INSERT INTO [테이블명] VALUES ([각 컬럼에 맞는 로우 값])
+R : SELECT [컬럼명] FROM [테이블명] WHERE [조건]
+U : UPDATE FROM [테이블명] SET [바꿀 값] WHERE [조건]
+D : DELETE FROM [테이블명] WHERE [조건]
+- 열(column)
+속성
+제약조건

@@ -1,0 +1,26 @@
+1
+CREATE TABLE human (
+classno NUMBER(3) UNIQUE,
+classname VARCHAR2(20) NOT NULL,
+student NUMBER(2) DEFAULT 0);
+
+
+2
+CREATE TABLE HMgoods (
+company VARCHAR2(2) CHECK (company IN('HM')),
+no NUMBER(3) UNIQUE NOT NULL CHECK (no BETWEEN 1 AND 999),
+goodsno VARCHAR2(5) NOT NULL,
+manager VARCHAR2(6) NOT NULL,
+quantity NUMBER(3) CHECK (quantity BETWEEN 1 AND 100),
+date VARCHAR2(30) NOT NULL,
+storage VARCHAR2(5) CHECK (storage IN('창고1','창고2','창고3')));
+
+
+3
+CREATE TABLE customer (
+id VARCHAR2(8) UNIQUE NOT NULL,
+name VARCHAR2(20) NOT NULL,
+gender VARCHAR2(2) CHECK (gender IN('남','여')),
+point NUMBER(5,2),
+phonenumber VARCHAR2(13));
+
