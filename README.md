@@ -4,11 +4,8 @@
 
 <br/>
 
-### Platforms & Languages
-
-
 ### Tools
-
+![Oracle](https://img.shields.io/badge/oracle-F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white)
 
 <br/>
 
