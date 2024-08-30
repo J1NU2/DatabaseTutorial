@@ -1,0 +1,90 @@
+▶ 1. 펫종류 테이블
+CREATE TABLE pet_type (
+type VARCHAR2(6) PRIMARY KEY
+);
+
+
+
+▶ 2. 주소 테이블
+CREATE TABLE local (
+local_name VARCHAR2(6) PRIMARY KEY
+);
+
+
+d
+▶ 3. 회원 테이블
+CREATE TABLE member (
+user_id VARCHAR2(8) PRIMARY KEY,
+identity_num VARCHAR2(14) UNIQUE NOT NULL,
+password VARCHAR2(8) NOT NULL,
+user_name VARCHAR2(6) NOT NULL,
+user_age NUMBER(2) NOT NULL,
+user_gender VARCHAR2(2) NOT NULL CHECK (user_gender IN('남','여')),
+address VARCHAR2(20) NOT NULL
+);
+
+
+
+▶ 4. 펫 테이블
+CREATE TABLE pet (
+user_id VARCHAR2(8) NOT NULL,
+type VARCHAR2(6) NOT NULL,
+pet_number NUMBER(3) PRIMARY KEY,
+pet_name VARCHAR2(10), NOT NULL,
+pet_age NUMBER(2) DEFAULT 1,
+pet_gender VARCHAR2(2) NOT NULL CHECK (pet_gender IN('남','여')),
+CONSTRAINT fk_pet_user_id FOREIGN KEY(user_id) REFERENCES member (user_id) ON DELETE CASCADE,
+CONSTRAINT fk_pet_type FOREIGN KEY(type) REFERENCES pet_type (type) ON DELETE SET NULL,
+);
+
+
+
+▶ 5. 상품 테이블
+CREATE TABLE goods (
+user_id VARCHAR2(8) NOT NULL,
+type VARCHAR2(6),
+pet_number NUMBER(3),
+goods_number NUMBER(5) PRIMARY KEY,
+goods_name VARCHAR2(20) NOT NULL,
+goods_price NUMBER(5,1) DEFAULT 1,
+goods_count NUMBER(2) DEFAULT 1,
+goods_date DATE DEFAULT sysdate,
+CONSTRAINT fk_goods_user_id FOREIGN KEY(user_id) REFERENCES member (user_id) ON DELETE CASCADE,
+CONSTRAINT fk_goods_type FOREIGN KEY(type) REFERENCES pet_type (type) ON DELETE SET NULL,
+CONSTRAINT fk_goods_number FOREIGN KEY(pet_number) REFERENCES pet (pet_number) ON DELETE SET NULL
+);
+
+CREATE SEQUENCE goods_seq;
+▷ 상품 테이블의 상품 번호는 시퀀스(SEQUENCE)를 이용해 순차적으로 저장한다. (1,2, ... ,n)
+
+
+
+▶ 6. 게시판 테이블
+CREATE TABLE board (
+user_id VARCHAR2(8),
+type VARCHAR2(6),
+local_name VARCHAR2(6),
+board_number NUMBER(5) PRIMARY KEY,
+board_title VARCHAR2(20) NOT NULL,
+board_detail VARCHAR2(50),
+CONSTRAINT fk_board_user_id FOREIGN KEY(user_id) REFERENCES member (user_id) ON DELETE SET NULL,
+CONSTRAINT fk_board_type FOREIGN KEY(type) REFERENCES pet_type (type) ON DELETE SET NULL,
+CONSTRAINT fk_board_local_name FOREIGN KEY(local_name) REFERENCES local (local_name) ON DELETE SET NULL
+);
+
+
+
+▶ 7. 댓글 테이블
+CREATE TABLE comments (
+user_id VARCHAR2(8),
+board_number NUMBER(5) NOT NULL,
+comment_number NUMBER(5) PRIMARY KEY,
+comment_detail VARCHAR2(50) NOT NULL,
+CONSTRAINT fk_comments_user_id FOREIGN KEY(user_id) REFERENCES member(user_id) ON DELETE SET NULL,
+CONSTRAINT fk_comments_board_number FOREIGN KEY(board_number) REFERENCES board(board_number) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE comments_seq;
+▷ 댓글 테이블의 댓글 번호는 시퀀스(SEQUENCE)를 이용해 순차적으로 저장한다. (1,2, ... ,n)
+
+
