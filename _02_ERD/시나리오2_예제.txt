@@ -1,0 +1,40 @@
+시나리오2 : 고객관리
+고객은 아이디, 이름, 성별, 포인트로 구성된다.
+아이디는 8글자이며, 중복된 아이디는 사용할 수 없다.
+이름은 한글로 최대 5글자이며, 성별은 남과 여로 저장한다.
+포인트는 최대 9999.99까지 저장할 수 있다.
+
+고객은 이벤트에 참여할 수 있다.
+이벤트는 별도의 테이블에 저장한다.
+이벤트 번호는 숫자 3개의 조합이다.
+이벤트 번호와 이벤트 이름과 날짜를 저장한다.
+
+고객만 이벤트에 참여 가능하고, 이벤트는 현재 계획된 이벤트만 신청이 가능하다.
+
+이벤트는 신청사연을 작성한다.
+고객은 여러개의 이벤트에 참여 가능하고, 이벤트는 여러 명의 고객이 참여할 수 있다.
+
+
+
+// 쿼리문
+CREATE TABLE customer (
+user_id VARCHAR2(8) PRIMARY KEY,
+user_name VARCHAR2(10) NOT NULL,
+gender VARCHAR2(2) NOT NULL CHECK (gender IN('남','여')),
+point NUMBER(6,2) DEFAULT 0 CHECK (point BETWEEN 0 AND 9999.99)
+);
+
+CREATE TABLE event (
+event_number NUMBER(3) PRIMARY KEY,
+event_name VARCHAR2(30) NOT NULL,
+event_date DATE NOT NULL
+);
+
+CREATE event_list (
+list_number NUMBER PRIMARY KEY,
+user_id VARCHAR2(8),
+event_number NUMBER(3),
+story VARCHAR2(255),
+CONSTRAINT fk_event_list_user_id FOREIGN KEY(user_id) REFERENCES customer (user_id),
+CONSTRAINT fk_event_list_event_number FOREIGN KEY(event_number) REFERENCES event (event_number)
+);
