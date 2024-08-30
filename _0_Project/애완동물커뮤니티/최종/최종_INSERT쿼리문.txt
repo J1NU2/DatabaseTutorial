@@ -1,0 +1,44 @@
+<삽입내용 정리>
+
+1. 펫종류(pet_type)
+INSERT INTO pet_type VALUES  ('강아지');
+INSERT INTO pet_type VALUES ('고양이');
+INSERT INTO pet_type VALUES ('새');
+INSERT INTO pet_type VALUES ('기타');
+
+2. 주소(local)
+INSERT INTO local VALUES ('서울시');
+INSERT INTO local VALUES ('수원시');
+INSERT INTO local VALUES ('화성시');
+INSERT INTO local VALUES ('기타');
+
+3. 회원(member) - 아이디, 주민번호, 비밀번호, 이름, 나이, 성별, 주소
+INSERT INTO member VALUES ('aaa','000000-0000000','aaa123','홍길동',15,'남','서울시 강동구');
+INSERT INTO member VALUES ('bbb','000000-0000001','bbb123','김회원',17,'남','서울시 마포구');
+INSERT INTO member VALUES ('ccc','000000-0000002','ccc123','김개똥',22,'여','수원시 영통구');
+INSERT INTO member VALUES ('ddd','000000-0000003','ddd123','김회원',30,'여','부산광역시 해운대구');
+
+4. 펫(pet) - 아이디, 분류, 번호, 이름, 나이, 성별
+INSERT INTO pet VALUES ('aaa','강아지',1,'복실이',1,'남');
+INSERT INTO pet VALUES ('aaa','고양이',2,'까망이',1,'여');
+INSERT INTO pet VALUES ('ccc','기타',3,'크리스토퍼',10,'남');
+INSERT INTO pet VALUES ('ddd','강아지',4,'복실이',2,'여');
+
+5. 상품(goods) - 아이디, 분류, 펫번호, 상품번호, 상품이름, 가격, 갯수, 등록일
+INSERT INTO goods VALUES ('aaa','강아지',1,goods_seq.nextval,'간식',2,5,sysdate);
+INSERT INTO goods VALUES ('aaa','고양이',2,goods_seq.nextval,'사료',5,8,sysdate);
+INSERT INTO goods VALUES ('ddd','강아지',4,goods_seq.nextval,'목줄',7,1,sysdate);
+INSERT INTO goods VALUES ('ccc','기타',3,goods_seq.nextval,'장난감',10,2,sysdate);
+
+6. 게시판(board) - 아이디, 분류, 지역명, 게시판번호, 제목, 내용
+INSERT INTO board VALUES ('aaa','강아지','서울시',1,'산책해요','같이 산책하실분 구해요');
+INSERT INTO board VALUES ('aaa','고양이','서울시',2,'고양이 산책','');
+INSERT INTO board VALUES ('ddd','강아지','기타',3,'조언구해요','밥을 안먹어요..');
+INSERT INTO board VALUES ('ccc','기타','수원시',4,'도마뱀 분양',null);
+
+7. 댓글(comments) - 아이디, 게시판번호, 번호, 내용
+CREATE SEQUENCE comments_seq;
+INSERT INTO comments VALUES ('ccc',2,comments_seq.nextval,'거짓말하지마세요');
+INSERT INTO comments VALUES ('aaa',2,comments_seq.nextval,'진짠뎅ㅜㅜ');
+INSERT INTO comments VALUES ('ddd',1,comments_seq.nextval,'저희 복실이랑 같이 산책해요~');
+INSERT INTO comments VALUES ('aaa',3,comments_seq.nextval,'제 사료좀 나눠 드릴까요?');
