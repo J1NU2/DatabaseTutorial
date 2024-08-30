@@ -1,0 +1,53 @@
+▶ 1. 펫종류 테이블
+CREATE TABLE pet_type (
+type VARCHAR2(6) PRIMARY KEY
+);
+INSERT INTO pet_type VALUES ('강아지');
+INSERT INTO pet_type VALUES ('고양이');
+INSERT INTO pet_type VALUES ('새');
+INSERT INTO pet_type VALUES ('기타');
+
+
+▶ 2. 주소 테이블
+CREATE TABLE local (
+local_name VARCHAR2(6) PRIMARY KEY
+);
+INSERT INTO local VALUES ('서울시');
+INSERT INTO local VALUES ('수원시');
+INSERT INTO local VALUES ('화성시');
+INSERT INTO local VALUES ('기타');
+
+
+▶ 3. 회원 테이블
+CREATE TABLE member (
+user_id VARCHAR2(8) PRIMARY KEY,
+identity_num VARCHAR2(14) UNIQUE NOT NULL,
+password VARCHAR2(8) NOT NULL,
+user_name VARCHAR2(6) NOT NULL,
+user_age NUMBER(2) NOT NULL,
+user_gender VARCHAR2(2) NOT NULL CHECK (user_gender IN('남','여')),
+address VARCHAR2(6) NOT NULL
+);
+INSERT INTO memeber VALUES ('qwer', '012210-0123210', 'asdf1234', '홍길동', 15, '남', '서울시');
+INSERT INTO memeber VALUES ('qwer1234', '123456-1234567', '12345678', '김회원', 17, '남', '서울시');
+INSERT INTO memeber VALUES ('q1w2e3r4', '654321-6543210', '12345678', '김회원', 22, '여', '수원시');
+
+
+▶ 4. 펫 테이블
+CREATE TABLE pet (
+user_id VARCHAR2(8) NOT NULL,
+type VARCHAR2(6) NOT NULL,
+pet_num NUMBER,
+pet_name VARCHAR2(10), NOT NULL,
+pet_age NUMBER(2) DEFAULT 1,
+pet_gender VARCHAR2(2) NOT NULL, CHECK (pet_gender IN('남','여')),
+CONSTRAINT fk_pet_user_id FOREIGN KEY(user_id) REFERENCES member (user_id) ON DELETE CASCADE,
+CONSTRAINT fk_pet_type FOREIGN KEY(type) REFERENCES pet_type (type)
+);
+
+CREATE SEQUENCE pet_seq;
+
+INSERT INTO pet VALUES ('qwer', '강아지', pet_seq.nextval, '갱얼쥐', '1', '남');
+INSERT INTO pet VALUES ('qwer', '고양이', pet_seq.nextval, '앩옹이', '1', '여');
+INSERT INTO pet VALUES ('qwer1234', '강아지', pet_seq.nextval, '갱얼쥐', '10', '남');
+
