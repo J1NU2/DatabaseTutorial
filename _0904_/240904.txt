@@ -72,3 +72,10 @@ ORDER BY 학년 ASC
 　1	60
 　2	65
 
+
+조인(JOIN) : 한개 이상의 릴레이션을 논리적으로 합치는 것
+> Full Join : 튜플x튜플, 릴레이션 간 존재하는 모든 튜플을 조인
+> Inner Join : 릴레이션 간 조건에 맞는 튜플을 조인
+	동등이너조인(=, ==)과 비동등이너조인(!=)
+> Outer Join : Inner Join + Join에 참여하지 않은 튜플을 출력한다.
+	조인 위치에 따라 Left Outer Join, Right Outer Join
