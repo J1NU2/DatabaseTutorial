@@ -17,3 +17,4 @@
 > - 24.09.02 : SELECT절, FROM절, WHERE절, ORDER BY절
 > - 24.09.03 : GROUP BY절, SubQuery
 > - 24.09.04 : 쿼리문의 실행 순서 정리, JOIN
+> - 24.09.05 : JOIN, VIEW
