@@ -1,0 +1,34 @@
+1. 설치하는 방법 (참고 : https://congsong.tistory.com/62)
+　- MariaDB 다운로드 홈페이지에 들어가서 다운로드를 진행한다.
+　(다운로드 페이지 : https://mariadb.org/download/?m=blendbyte&t=mariadb&p=mariadb&r=11.5.2&os=windows&cpu=x86_64&pkg=zip&mirror=blendbyte)
+　- 지원 버전을 확인하고, 어떤 버전의 MariaDB Server를 사용할 것인지 선택한다.
+　- MSI Package가 설치 프로그램 파일이기 때문에 해당 패키지를 선택하여 다운로드 받는다.
+
+　- 다운로드 받은 Setup파일을 실행하고 "다음 → 라이센스동의, 다음"으로 넘어간다.
+　- MariaDB 설치 경로를 지정해야하는데, 설치 시 지정된 기본 경로가 있기 때문에 다음으로 넘어간다.
+　- root계정의 비밀번호를 입력하고, 기본 Character Set 설정이 UTF8로 지정할 수 있도록 체크하고 다음으로 넘어간다.
+　(Character Set에 대한 정보 : https://gbminnote.com/entry/MYSQL-MariaDB-%EC%BA%90%EB%A6%AD%ED%84%B0-%EC%85%8BCharacter-Set-%EA%B0%9C%EB%85%90%EA%B3%BC-%EB%B3%80%EA%B2%BD-%EB%B0%A9%EB%B2%95)
+　- 서버 이름(MariaDB)과 접속할 TCP 포트번호를 확인한 뒤 다음으로 넘어가고 설치한다.
+　(기본 TCP 포트 번호가 3306인데, MariaDB를 개발한 개발자들이 MySQL 개발자 출신이라 같은 포트번호를 사용한다고 한다.)
+
+
+2. 속성타입, 제약조건, 기본키
+▷ 속성타입
+　숫자 데이터 : INT FLOAT(m,d) DOUBLE(m,d) NUMERIC(m,d) : BIT(n)
+　문자 데이터 : 고정길이 CHAR(size) / 가변길이 VARCHAR(size)
+　날짜/시간 데이터 : DATE TIME DATETIME TIMESTAMP
+▷ 제약조건
+UNIQUE : 한 컬럼에 동일한 튜플값을 지닐 수 없음
+NOT NULL : NULL값을 포함할 수 없음
+CHECK : 특정 조건 지정
+DEFAULT 값 : 기본으로 들어갈 값 지정
+▷ 키
+PRIMARY KEY : 기본키(UNIQUE, NOT NULL)
+FOREIGN KEY : 외래키, 참조 컬럼 지정(REFERENCES 참조테이블(참조컬럼))
+	CONSTRAINT 제약조건명
+
+
+3. 포트번호
+MariaDB : 3306
+포트번호 확인 명령어 : SHOW GLOBAL variables LIKE 'port';
+
